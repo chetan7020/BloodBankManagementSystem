@@ -15,11 +15,14 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.safar.bloodbankmanagementsystem.R;
 import com.safar.bloodbankmanagementsystem.databinding.FragmentCampBinding;
 import com.safar.bloodbankmanagementsystem.databinding.FragmentFeedbackBinding;
 
+import java.util.Date;
 
 public class CampFragment extends Fragment {
 
@@ -45,7 +48,21 @@ public class CampFragment extends Fragment {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots.getDocuments()) {
+                            View view = getLayoutInflater().inflate(R.layout.blood_camp_card_layout, null, false);
 
+                            TextView tvName = view.findViewById(R.id.tvName);
+                            TextView tvLat = view.findViewById(R.id.tvLat);
+                            TextView tvLang = view.findViewById(R.id.tvLang);
+                            TextView tvEndDate = view.findViewById(R.id.tvEndDate);
+
+                            GeoPoint geoPoint = documentSnapshot.getGeoPoint("geoPoint");
+
+                            tvName.setText("Name : " + documentSnapshot.get("name").toString());
+                            tvLat.setText("Lat : " + Double.toString(geoPoint.getLatitude()));
+                            tvLang.setText("Lang : " + Double.toString(geoPoint.getLongitude()));
+                            tvEndDate.setText("End Date : " + new Date((long)documentSnapshot.get("end")).toString());
+
+                            binding.llData.addView(view);
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener() {

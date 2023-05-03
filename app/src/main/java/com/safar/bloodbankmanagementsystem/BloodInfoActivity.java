@@ -3,10 +3,13 @@ package com.safar.bloodbankmanagementsystem;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,8 +19,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
-import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class BloodInfoActivity extends AppCompatActivity {
@@ -26,15 +29,21 @@ public class BloodInfoActivity extends AppCompatActivity {
     String id;
     private TextView tvName, tvLat, tvLang;
 
+    private Button btnReceive, btnDonate;
+    private TextView AP1, AP2, AP3, AP4, AP5, AP6, AP7, AP8;
+
     private TableLayout tlData;
     private FirebaseFirestore firebaseFirestore;
+//    Map<String, String> bloodGroup;
 
     private void init() {
         initialize();
         listener();
 
-        Log.d(TAG, "init: " + id);
+        getData();
+    }
 
+    private void getData() {
         firebaseFirestore
                 .collection("Bank")
                 .document(id)
@@ -44,28 +53,20 @@ public class BloodInfoActivity extends AppCompatActivity {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         String name = documentSnapshot.get("name").toString();
                         GeoPoint geoPoint = documentSnapshot.getGeoPoint("geoPoint");
-                        Map<String, String> bloodGroup = (Map<String, String>) documentSnapshot.get("bloodGroup");
+//                        bloodGroup = (Map<String, String>) documentSnapshot.get("bloodGroup");
 
                         tvName.setText("Name : " + name);
                         tvLat.setText("Lat : " + Double.toString(geoPoint.getLatitude()));
                         tvLang.setText("Lang : " + Double.toString(geoPoint.getLongitude()));
 
-                        Log.d(TAG, "onSuccess: "+bloodGroup);
-
-                        for (Map.Entry<String, String> entry : bloodGroup.entrySet()) {
-                            View view = getLayoutInflater().inflate(R.layout.blood_group_data_row_layout, null, false);
-
-                            TextView tvBloodType = view.findViewById(R.id.tvBloodType);
-                            TextView tvPackets = view.findViewById(R.id.tvPackets);
-
-                            tvBloodType.setText(entry.getKey());
-                            tvPackets.setText(entry.getValue());
-                            Log.d(TAG, "onSuccess: "+entry.getKey());
-                            Log.d(TAG, "onSuccess: "+entry.getValue());
-
-                            tlData.addView(view);
-                        }
-
+                        AP1.setText(documentSnapshot.get("A+").toString());
+                        AP2.setText(documentSnapshot.get("A-").toString());
+                        AP3.setText(documentSnapshot.get("B+").toString());
+                        AP4.setText(documentSnapshot.get("B-").toString());
+                        AP5.setText(documentSnapshot.get("O+").toString());
+                        AP6.setText(documentSnapshot.get("O-").toString());
+                        AP7.setText(documentSnapshot.get("AB+").toString());
+                        AP8.setText(documentSnapshot.get("AB-").toString());
 
                     }
                 }).
@@ -84,15 +85,178 @@ public class BloodInfoActivity extends AppCompatActivity {
 
         firebaseFirestore = FirebaseFirestore.getInstance();
 
+        btnReceive = findViewById(R.id.btnReceive);
+        btnDonate = findViewById(R.id.btnDonate);
+
         tvName = findViewById(R.id.tvName);
         tvLat = findViewById(R.id.tvLat);
         tvLang = findViewById(R.id.tvLang);
 
-        tlData = findViewById(R.id.tlData);
+        AP1 = findViewById(R.id.AP1);
+        AP2 = findViewById(R.id.AP2);
+        AP3 = findViewById(R.id.AP3);
+        AP4 = findViewById(R.id.AP4);
+        AP5 = findViewById(R.id.AP5);
+        AP6 = findViewById(R.id.AP6);
+        AP7 = findViewById(R.id.AP7);
+        AP8 = findViewById(R.id.AP8);
+
     }
 
     private void listener() {
 
+        btnReceive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Dialog dialog = new Dialog(BloodInfoActivity.this);
+
+                dialog.setContentView(R.layout.blood_receive_donate_form_layout);
+                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+                EditText etBloodGroup = dialog.findViewById(R.id.etBloodGroup);
+                EditText etPackets = dialog.findViewById(R.id.etPackets);
+                Button btnSubmit = dialog.findViewById(R.id.btnSubmit);
+
+                btnSubmit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String bloodGroup = etBloodGroup.getText().toString().trim();
+                        int receive = Integer.valueOf(etPackets.getText().toString().trim());
+
+                        if (bloodGroup.equals("A+")) {
+                            int cal = Integer.parseInt(AP1.getText().toString()) - receive;
+                            if (cal < 0) {
+                                Toast.makeText(BloodInfoActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                            } else {
+                                updateField(bloodGroup, Integer.toString(cal));
+                            }
+
+                        } else if (bloodGroup.equals("A-")) {
+                            int cal = Integer.parseInt(AP2.getText().toString()) - receive;
+                            if (cal < 0) {
+                                Toast.makeText(BloodInfoActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                            } else {
+                                updateField(bloodGroup, Integer.toString(cal));
+                            }
+                        } else if (bloodGroup.equals("B+")) {
+                            int cal = Integer.parseInt(AP3.getText().toString()) - receive;
+                            if (cal < 0) {
+                                Toast.makeText(BloodInfoActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                            } else {
+                                updateField(bloodGroup, Integer.toString(cal));
+                            }
+                        } else if (bloodGroup.equals("B-")) {
+                            int cal = Integer.parseInt(AP4.getText().toString()) - receive;
+                            if (cal < 0) {
+                                Toast.makeText(BloodInfoActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                            } else {
+                                updateField(bloodGroup, Integer.toString(cal));
+                            }
+                        } else if (bloodGroup.equals("O+")) {
+                            int cal = Integer.parseInt(AP5.getText().toString()) - receive;
+                            if (cal < 0) {
+                                Toast.makeText(BloodInfoActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                            } else {
+                                updateField(bloodGroup, Integer.toString(cal));
+                            }
+                        } else if (bloodGroup.equals("O-")) {
+                            int cal = Integer.parseInt(AP6.getText().toString()) - receive;
+                            if (cal < 0) {
+                                Toast.makeText(BloodInfoActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                            } else {
+                                updateField(bloodGroup, Integer.toString(cal));
+                            }
+                        } else if (bloodGroup.equals("AB+")) {
+                            int cal = Integer.parseInt(AP7.getText().toString()) - receive;
+                            if (cal < 0) {
+                                Toast.makeText(BloodInfoActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                            } else {
+                                updateField(bloodGroup, Integer.toString(cal));
+                            }
+                        } else if (bloodGroup.equals("AB-")) {
+                            int cal = Integer.parseInt(AP8.getText().toString()) - receive;
+                            if (cal < 0) {
+                                Toast.makeText(BloodInfoActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                            } else {
+                                updateField(bloodGroup, Integer.toString(cal));
+                            }
+                        }
+
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+            }
+        });
+        btnDonate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Dialog dialog = new Dialog(BloodInfoActivity.this);
+
+                dialog.setContentView(R.layout.blood_receive_donate_form_layout);
+                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+                EditText etBloodGroup = dialog.findViewById(R.id.etBloodGroup);
+                EditText etPackets = dialog.findViewById(R.id.etPackets);
+                Button btnSubmit = dialog.findViewById(R.id.btnSubmit);
+
+                btnSubmit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String bloodGroup = etBloodGroup.getText().toString().trim();
+                        int donate = Integer.valueOf(etPackets.getText().toString().trim());
+
+                        if (bloodGroup.equals("A+")) {
+                            int cal = Integer.parseInt(AP1.getText().toString()) + donate;
+                            updateField(bloodGroup, Integer.toString(cal));
+
+                        } else if (bloodGroup.equals("A-")) {
+                            int cal = Integer.parseInt(AP2.getText().toString()) + donate;
+                            updateField(bloodGroup, Integer.toString(cal));
+                        } else if (bloodGroup.equals("B+")) {
+                            int cal = Integer.parseInt(AP3.getText().toString()) + donate;
+                            updateField(bloodGroup, Integer.toString(cal));
+                        } else if (bloodGroup.equals("B-")) {
+                            int cal = Integer.parseInt(AP4.getText().toString()) + donate;
+                            updateField(bloodGroup, Integer.toString(cal));
+                        } else if (bloodGroup.equals("O+")) {
+                            int cal = Integer.parseInt(AP5.getText().toString()) + donate;
+                            updateField(bloodGroup, Integer.toString(cal));
+                        } else if (bloodGroup.equals("O-")) {
+                            int cal = Integer.parseInt(AP6.getText().toString()) + donate;
+                            updateField(bloodGroup, Integer.toString(cal));
+                        } else if (bloodGroup.equals("AB+")) {
+                            int cal = Integer.parseInt(AP7.getText().toString()) + donate;
+                            updateField(bloodGroup, Integer.toString(cal));
+                        } else if (bloodGroup.equals("AB-")) {
+                            int cal = Integer.parseInt(AP8.getText().toString()) + donate;
+                            updateField(bloodGroup, Integer.toString(cal));
+                        }
+
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+            }
+        });
+    }
+
+    private void updateField(String bloodGroup, String packets) {
+        Map<String, Object> update = new HashMap<>();
+        update.put(bloodGroup, packets);
+
+        firebaseFirestore
+                .collection("Bank")
+                .document(id)
+                .update(update)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(BloodInfoActivity.this, "Transaction Completed", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     @Override
