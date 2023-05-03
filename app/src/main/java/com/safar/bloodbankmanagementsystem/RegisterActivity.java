@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -21,8 +23,8 @@ import java.util.UUID;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private EditText etName, etMobileNumber, etBloodGroup, etEmail, etPassword, etLat, etLang;
-    private Button btnRegister;
+    private MaterialAutoCompleteTextView etName, etMobileNumber, etBloodGroup, etEmail, etPassword, etLat, etLang;
+    private MaterialCardView btnRegister;
     private FirebaseFirestore firebaseFirestore;
     private FirebaseAuth firebaseAuth;
 
@@ -56,39 +58,43 @@ public class RegisterActivity extends AppCompatActivity {
                         String bloodGroup = etBloodGroup.getText().toString().trim();
                         String email = etEmail.getText().toString().trim();
                         String pass = etPassword.getText().toString().trim();
-                        double lat = Double.parseDouble(etLat.getText().toString().trim());
+                        double lati = Double.parseDouble(etLat.getText().toString().trim());
                         double lang = Double.parseDouble(etLang.getText().toString().trim());
                         long time = System.currentTimeMillis();
 
-                        firebaseAuth
-                                .createUserWithEmailAndPassword(email, pass)
-                                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                                    @Override
-                                    public void onSuccess(AuthResult authResult) {
-                                        firebaseFirestore
-                                                .collection("User")
-                                                .document(email)
-                                                .set(new User(id, name, mobileNumber, bloodGroup, email, time, lat, lang))
-                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                    @Override
-                                                    public void onSuccess(Void unused) {
-                                                        Toast.makeText(RegisterActivity.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
-                                                        startActivity(new Intent(RegisterActivity.this, MainActivity.class));
-                                                        finish();
-                                                    }
-                                                }).addOnFailureListener(new OnFailureListener() {
-                                                    @Override
-                                                    public void onFailure(@NonNull Exception e) {
-                                                        Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                                                    }
-                                                });
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                                    }
-                                });
+                        if(!name.equals("") && !mobileNumber.equals("") && !bloodGroup.equals("") && !email.equals("") && !pass.equals("") && !String.valueOf(lati).equals("") && !String.valueOf(lang).equals("")) {
+                            firebaseAuth
+                                    .createUserWithEmailAndPassword(email, pass)
+                                    .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                                        @Override
+                                        public void onSuccess(AuthResult authResult) {
+                                            firebaseFirestore
+                                                    .collection("User")
+                                                    .document(email)
+                                                    .set(new User(id, name, mobileNumber, bloodGroup, email, time, lati, lang))
+                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                        @Override
+                                                        public void onSuccess(Void unused) {
+                                                            Toast.makeText(RegisterActivity.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
+                                                            startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                                                            finish();
+                                                        }
+                                                    }).addOnFailureListener(new OnFailureListener() {
+                                                        @Override
+                                                        public void onFailure(@NonNull Exception e) {
+                                                            Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    });
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                        } else {
+                            Toast.makeText(RegisterActivity.this, "Fill the details", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
     }
@@ -97,6 +103,7 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        getSupportActionBar().setTitle("Register");
 
         init();
     }

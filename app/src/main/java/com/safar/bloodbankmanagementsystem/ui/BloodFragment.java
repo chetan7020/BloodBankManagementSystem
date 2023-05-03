@@ -94,6 +94,7 @@ public class BloodFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentBloodBinding.inflate(getLayoutInflater());
 
+
         init();
 
         return binding.getRoot();

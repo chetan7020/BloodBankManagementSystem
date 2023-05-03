@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.card.MaterialCardView;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
@@ -29,7 +30,7 @@ public class BloodInfoActivity extends AppCompatActivity {
     String id;
     private TextView tvName, tvLat, tvLang;
 
-    private Button btnReceive, btnDonate;
+    private MaterialCardView btnReceive, btnDonate;
     private TextView AP1, AP2, AP3, AP4, AP5, AP6, AP7, AP8;
 
     private TableLayout tlData;
@@ -263,6 +264,7 @@ public class BloodInfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blood_info);
+        getSupportActionBar().setTitle("Blood Info");
 
         init();
     }
