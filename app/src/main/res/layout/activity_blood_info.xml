@@ -18,6 +18,24 @@
             android:orientation="vertical"
             android:padding="20dp">
 
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tvLat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tvLang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp" />
+
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -49,19 +67,7 @@
             <TableLayout
                 android:id="@+id/tlData"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <include layout="@layout/blood_group_data_row_layout" />
-
-                <include layout="@layout/blood_group_data_row_layout" />
-
-                <include layout="@layout/blood_group_data_row_layout" />
-
-                <include layout="@layout/blood_group_data_row_layout" />
-
-                <include layout="@layout/blood_group_data_row_layout" />
-
-            </TableLayout>
+                android:layout_height="wrap_content" />
 
             <Button
                 android:id="@+id/btnReceive"

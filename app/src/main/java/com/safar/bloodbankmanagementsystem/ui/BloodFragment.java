@@ -1,5 +1,6 @@
 package com.safar.bloodbankmanagementsystem.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,9 +18,9 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.safar.bloodbankmanagementsystem.BloodInfoActivity;
 import com.safar.bloodbankmanagementsystem.R;
 import com.safar.bloodbankmanagementsystem.databinding.FragmentBloodBinding;
-
 
 public class BloodFragment extends Fragment {
 
@@ -75,6 +76,16 @@ public class BloodFragment extends Fragment {
         tvBankName.setText(name);
         tvLat.setText(Double.toString(lat));
         tvLang.setText(Double.toString(lang));
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), BloodInfoActivity.class);
+                Log.d(TAG, "onClick: "+tvID.getText().toString());
+                intent.putExtra("id", tvID.getText().toString());
+                startActivity(intent);
+            }
+        });
 
         binding.llData.addView(view);
     }
