@@ -15,110 +15,337 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:orientation="vertical"
-            android:paddingHorizontal="20dp">
+            android:paddingHorizontal="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Feedback Form"
+                android:layout_gravity="center"
+                android:textStyle="bold"
                 android:textColor="@color/black"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="10dp"
                 android:text="Did you meet the minimum requirements to donate blood, such as weight and hemoglobin levels?"
                 android:textSize="14sp" />
 
-            <EditText
-                android:id="@+id/etQ1"
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="55dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="30px"
+                android:backgroundTint="@color/white"
+                android:outlineSpotShadowColor="@color/card_elevation"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etQ1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginVertical="5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginStart="10dp"
+                        android:background="@null"
+                        android:hint="Answer"
+                        android:inputType="textEmailAddress"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="10dp"
                 android:text="Did you feel any discomfort, dizziness, or weakness during or after the donation process?"
                 android:textSize="14sp" />
 
-            <EditText
-                android:id="@+id/etQ2"
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="55dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="30px"
+                android:backgroundTint="@color/white"
+                android:outlineSpotShadowColor="@color/card_elevation"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etQ2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginVertical="5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginStart="10dp"
+                        android:background="@null"
+                        android:hint="Answer"
+                        android:inputType="textEmailAddress"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="10dp"
                 android:text="Did you experience any adverse reactions to the donation process, such as bruising or infection at the donation site?"
                 android:textSize="14sp" />
 
-            <EditText
-                android:id="@+id/etQ3"
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="55dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="30px"
+                android:backgroundTint="@color/white"
+                android:outlineSpotShadowColor="@color/card_elevation"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etQ3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginVertical="5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginStart="10dp"
+                        android:background="@null"
+                        android:hint="Answer"
+                        android:inputType="textEmailAddress"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="10dp"
                 android:text="Have you experienced any health issues in the past that may affect your eligibility to donate blood?"
                 android:textSize="14sp" />
 
-            <EditText
-                android:id="@+id/etQ4"
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="55dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="30px"
+                android:backgroundTint="@color/white"
+                android:outlineSpotShadowColor="@color/card_elevation"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etQ4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginVertical="5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginStart="10dp"
+                        android:background="@null"
+                        android:hint="Answer"
+                        android:inputType="textEmailAddress"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="10dp"
                 android:text="Did you disclose any relevant medical history to the staff prior to donating blood?"
                 android:textSize="14sp" />
 
-            <EditText
-                android:id="@+id/etQ5"
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="55dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="30px"
+                android:backgroundTint="@color/white"
+                android:outlineSpotShadowColor="@color/card_elevation"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etQ5"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginVertical="5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginStart="10dp"
+                        android:background="@null"
+                        android:hint="Answer"
+                        android:inputType="textEmailAddress"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="10dp"
                 android:text="Have you been diagnosed with any medical conditions since your last donation?"
                 android:textSize="14sp" />
 
-            <EditText
-                android:id="@+id/etQ6"
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="55dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="30px"
+                android:backgroundTint="@color/white"
+                android:outlineSpotShadowColor="@color/card_elevation"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etQ6"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginVertical="5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginStart="10dp"
+                        android:background="@null"
+                        android:hint="Answer"
+                        android:inputType="textEmailAddress"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="10dp"
                 android:text="Have you traveled to any countries or regions that may affect your eligibility to donate blood?"
                 android:textSize="14sp" />
 
-            <EditText
-                android:id="@+id/etQ7"
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="55dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="30px"
+                android:backgroundTint="@color/white"
+                android:outlineSpotShadowColor="@color/card_elevation"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etQ7"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginVertical="5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginStart="10dp"
+                        android:background="@null"
+                        android:hint="Answer"
+                        android:inputType="textEmailAddress"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="10dp"
                 android:text="Have you taken any medications or received any medical treatments that may affect your eligibility to donate blood?"
                 android:textSize="14sp" />
 
-            <EditText
-                android:id="@+id/etQ8"
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="55dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="30px"
+                android:backgroundTint="@color/white"
+                android:outlineSpotShadowColor="@color/card_elevation"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etQ8"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginVertical="5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginStart="10dp"
+                        android:background="@null"
+                        android:hint="Answer"
+                        android:inputType="textEmailAddress"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
 
             <Button
                 android:id="@+id/btnSubmit"

@@ -30,7 +30,7 @@ public class BloodInfoActivity extends AppCompatActivity {
     String id;
     private TextView tvName, tvLat, tvLang;
 
-    private MaterialCardView btnReceive, btnDonate;
+    private Button btnReceive, btnDonate;
     private TextView AP1, AP2, AP3, AP4, AP5, AP6, AP7, AP8;
 
     private TableLayout tlData;
@@ -116,74 +116,79 @@ public class BloodInfoActivity extends AppCompatActivity {
 
                 EditText etBloodGroup = dialog.findViewById(R.id.etBloodGroup);
                 EditText etPackets = dialog.findViewById(R.id.etPackets);
-                Button btnSubmit = dialog.findViewById(R.id.btnSubmit);
+                MaterialCardView btnSubmit = dialog.findViewById(R.id.btnSubmit);
 
                 btnSubmit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        String bloodGroup = etBloodGroup.getText().toString().trim();
-                        int receive = Integer.valueOf(etPackets.getText().toString().trim());
 
-                        if (bloodGroup.equals("A+")) {
-                            int cal = Integer.parseInt(AP1.getText().toString()) - receive;
-                            if (cal < 0) {
-                                Toast.makeText(BloodInfoActivity.this, "Failed", Toast.LENGTH_SHORT).show();
-                            } else {
-                                updateField(bloodGroup, Integer.toString(cal));
+                        if(!etBloodGroup.getText().toString().equals("") && !etPackets.getText().toString().equals("")) {
+                            String bloodGroup = etBloodGroup.getText().toString().trim();
+                            int receive = Integer.valueOf(etPackets.getText().toString().trim());
+                            if (bloodGroup.equals("A+")) {
+                                int cal = Integer.parseInt(AP1.getText().toString()) - receive;
+                                if (cal < 0) {
+                                    Toast.makeText(BloodInfoActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    updateField(bloodGroup, Integer.toString(cal));
+                                }
+
+                            } else if (bloodGroup.equals("A-")) {
+                                int cal = Integer.parseInt(AP2.getText().toString()) - receive;
+                                if (cal < 0) {
+                                    Toast.makeText(BloodInfoActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    updateField(bloodGroup, Integer.toString(cal));
+                                }
+                            } else if (bloodGroup.equals("B+")) {
+                                int cal = Integer.parseInt(AP3.getText().toString()) - receive;
+                                if (cal < 0) {
+                                    Toast.makeText(BloodInfoActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    updateField(bloodGroup, Integer.toString(cal));
+                                }
+                            } else if (bloodGroup.equals("B-")) {
+                                int cal = Integer.parseInt(AP4.getText().toString()) - receive;
+                                if (cal < 0) {
+                                    Toast.makeText(BloodInfoActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    updateField(bloodGroup, Integer.toString(cal));
+                                }
+                            } else if (bloodGroup.equals("O+")) {
+                                int cal = Integer.parseInt(AP5.getText().toString()) - receive;
+                                if (cal < 0) {
+                                    Toast.makeText(BloodInfoActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    updateField(bloodGroup, Integer.toString(cal));
+                                }
+                            } else if (bloodGroup.equals("O-")) {
+                                int cal = Integer.parseInt(AP6.getText().toString()) - receive;
+                                if (cal < 0) {
+                                    Toast.makeText(BloodInfoActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    updateField(bloodGroup, Integer.toString(cal));
+                                }
+                            } else if (bloodGroup.equals("AB+")) {
+                                int cal = Integer.parseInt(AP7.getText().toString()) - receive;
+                                if (cal < 0) {
+                                    Toast.makeText(BloodInfoActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    updateField(bloodGroup, Integer.toString(cal));
+                                }
+                            } else if (bloodGroup.equals("AB-")) {
+                                int cal = Integer.parseInt(AP8.getText().toString()) - receive;
+                                if (cal < 0) {
+                                    Toast.makeText(BloodInfoActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    updateField(bloodGroup, Integer.toString(cal));
+                                }
                             }
 
-                        } else if (bloodGroup.equals("A-")) {
-                            int cal = Integer.parseInt(AP2.getText().toString()) - receive;
-                            if (cal < 0) {
-                                Toast.makeText(BloodInfoActivity.this, "Failed", Toast.LENGTH_SHORT).show();
-                            } else {
-                                updateField(bloodGroup, Integer.toString(cal));
-                            }
-                        } else if (bloodGroup.equals("B+")) {
-                            int cal = Integer.parseInt(AP3.getText().toString()) - receive;
-                            if (cal < 0) {
-                                Toast.makeText(BloodInfoActivity.this, "Failed", Toast.LENGTH_SHORT).show();
-                            } else {
-                                updateField(bloodGroup, Integer.toString(cal));
-                            }
-                        } else if (bloodGroup.equals("B-")) {
-                            int cal = Integer.parseInt(AP4.getText().toString()) - receive;
-                            if (cal < 0) {
-                                Toast.makeText(BloodInfoActivity.this, "Failed", Toast.LENGTH_SHORT).show();
-                            } else {
-                                updateField(bloodGroup, Integer.toString(cal));
-                            }
-                        } else if (bloodGroup.equals("O+")) {
-                            int cal = Integer.parseInt(AP5.getText().toString()) - receive;
-                            if (cal < 0) {
-                                Toast.makeText(BloodInfoActivity.this, "Failed", Toast.LENGTH_SHORT).show();
-                            } else {
-                                updateField(bloodGroup, Integer.toString(cal));
-                            }
-                        } else if (bloodGroup.equals("O-")) {
-                            int cal = Integer.parseInt(AP6.getText().toString()) - receive;
-                            if (cal < 0) {
-                                Toast.makeText(BloodInfoActivity.this, "Failed", Toast.LENGTH_SHORT).show();
-                            } else {
-                                updateField(bloodGroup, Integer.toString(cal));
-                            }
-                        } else if (bloodGroup.equals("AB+")) {
-                            int cal = Integer.parseInt(AP7.getText().toString()) - receive;
-                            if (cal < 0) {
-                                Toast.makeText(BloodInfoActivity.this, "Failed", Toast.LENGTH_SHORT).show();
-                            } else {
-                                updateField(bloodGroup, Integer.toString(cal));
-                            }
-                        } else if (bloodGroup.equals("AB-")) {
-                            int cal = Integer.parseInt(AP8.getText().toString()) - receive;
-                            if (cal < 0) {
-                                Toast.makeText(BloodInfoActivity.this, "Failed", Toast.LENGTH_SHORT).show();
-                            } else {
-                                updateField(bloodGroup, Integer.toString(cal));
-                            }
+                            dialog.dismiss();
+                        } else {
+                            Toast.makeText(BloodInfoActivity.this, "Fill the details", Toast.LENGTH_SHORT).show();
                         }
 
-                        dialog.dismiss();
                     }
                 });
 
@@ -200,42 +205,47 @@ public class BloodInfoActivity extends AppCompatActivity {
 
                 EditText etBloodGroup = dialog.findViewById(R.id.etBloodGroup);
                 EditText etPackets = dialog.findViewById(R.id.etPackets);
-                Button btnSubmit = dialog.findViewById(R.id.btnSubmit);
+                MaterialCardView btnSubmit = dialog.findViewById(R.id.btnSubmit);
 
                 btnSubmit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        String bloodGroup = etBloodGroup.getText().toString().trim();
-                        int donate = Integer.valueOf(etPackets.getText().toString().trim());
 
-                        if (bloodGroup.equals("A+")) {
-                            int cal = Integer.parseInt(AP1.getText().toString()) + donate;
-                            updateField(bloodGroup, Integer.toString(cal));
+                        if (!etBloodGroup.getText().toString().equals("") && !etPackets.getText().toString().equals("")) {
+                            String bloodGroup = etBloodGroup.getText().toString().trim();
+                            int donate = Integer.valueOf(etPackets.getText().toString().trim());
+                            if (bloodGroup.equals("A+")) {
+                                int cal = Integer.parseInt(AP1.getText().toString()) + donate;
+                                updateField(bloodGroup, Integer.toString(cal));
 
-                        } else if (bloodGroup.equals("A-")) {
-                            int cal = Integer.parseInt(AP2.getText().toString()) + donate;
-                            updateField(bloodGroup, Integer.toString(cal));
-                        } else if (bloodGroup.equals("B+")) {
-                            int cal = Integer.parseInt(AP3.getText().toString()) + donate;
-                            updateField(bloodGroup, Integer.toString(cal));
-                        } else if (bloodGroup.equals("B-")) {
-                            int cal = Integer.parseInt(AP4.getText().toString()) + donate;
-                            updateField(bloodGroup, Integer.toString(cal));
-                        } else if (bloodGroup.equals("O+")) {
-                            int cal = Integer.parseInt(AP5.getText().toString()) + donate;
-                            updateField(bloodGroup, Integer.toString(cal));
-                        } else if (bloodGroup.equals("O-")) {
-                            int cal = Integer.parseInt(AP6.getText().toString()) + donate;
-                            updateField(bloodGroup, Integer.toString(cal));
-                        } else if (bloodGroup.equals("AB+")) {
-                            int cal = Integer.parseInt(AP7.getText().toString()) + donate;
-                            updateField(bloodGroup, Integer.toString(cal));
-                        } else if (bloodGroup.equals("AB-")) {
-                            int cal = Integer.parseInt(AP8.getText().toString()) + donate;
-                            updateField(bloodGroup, Integer.toString(cal));
+                            } else if (bloodGroup.equals("A-")) {
+                                int cal = Integer.parseInt(AP2.getText().toString()) + donate;
+                                updateField(bloodGroup, Integer.toString(cal));
+                            } else if (bloodGroup.equals("B+")) {
+                                int cal = Integer.parseInt(AP3.getText().toString()) + donate;
+                                updateField(bloodGroup, Integer.toString(cal));
+                            } else if (bloodGroup.equals("B-")) {
+                                int cal = Integer.parseInt(AP4.getText().toString()) + donate;
+                                updateField(bloodGroup, Integer.toString(cal));
+                            } else if (bloodGroup.equals("O+")) {
+                                int cal = Integer.parseInt(AP5.getText().toString()) + donate;
+                                updateField(bloodGroup, Integer.toString(cal));
+                            } else if (bloodGroup.equals("O-")) {
+                                int cal = Integer.parseInt(AP6.getText().toString()) + donate;
+                                updateField(bloodGroup, Integer.toString(cal));
+                            } else if (bloodGroup.equals("AB+")) {
+                                int cal = Integer.parseInt(AP7.getText().toString()) + donate;
+                                updateField(bloodGroup, Integer.toString(cal));
+                            } else if (bloodGroup.equals("AB-")) {
+                                int cal = Integer.parseInt(AP8.getText().toString()) + donate;
+                                updateField(bloodGroup, Integer.toString(cal));
+                            }
+
+                            dialog.dismiss();
+                        } else {
+                            Toast.makeText(BloodInfoActivity.this, "Fill the details", Toast.LENGTH_SHORT).show();
                         }
 
-                        dialog.dismiss();
                     }
                 });
 

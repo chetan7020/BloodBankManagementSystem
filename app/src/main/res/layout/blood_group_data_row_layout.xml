@@ -1,24 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tvBloodType"
-        android:layout_width="0dp"
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:padding="10dp"
-        android:text="B+"
-        android:textSize="16sp" />
+        android:layout_marginHorizontal="10dp"
+        android:backgroundTint="@color/white"
+        android:layout_marginBottom="5dp"
+        android:outlineSpotShadowColor="@color/card_elevation"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="16dp">
 
-    <TextView
-        android:id="@+id/tvPackets"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:padding="10dp"
-        android:text="10"
-        android:textSize="16sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvBloodType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="10dp"
+                android:text="B+"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvPackets"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="10dp"
+                android:text="10"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
 
 </TableRow>

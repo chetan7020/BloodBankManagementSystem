@@ -40,39 +40,46 @@ public class FeedbackFragment extends Fragment {
         binding.btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Map<String, String> data = new HashMap<>();
-                data.put("q1", binding.etQ1.getText().toString());
-                data.put("q2", binding.etQ2.getText().toString());
-                data.put("q3", binding.etQ3.getText().toString());
-                data.put("q4", binding.etQ4.getText().toString());
-                data.put("q5", binding.etQ5.getText().toString());
-                data.put("q6", binding.etQ6.getText().toString());
-                data.put("q7", binding.etQ7.getText().toString());
-                data.put("q8", binding.etQ8.getText().toString());
-                
-                firebaseFirestore
-                        .collection("Feedback")
-                        .document(firebaseAuth.getCurrentUser().getEmail())
-                        .set(data)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void unused) {
-                                binding.etQ1.setText("");
-                                binding.etQ2.setText("");
-                                binding.etQ3.setText("");
-                                binding.etQ4.setText("");
-                                binding.etQ5.setText("");
-                                binding.etQ6.setText("");
-                                binding.etQ7.setText("");
-                                binding.etQ8.setText("");
-                                Toast.makeText(getActivity(), "Form Submitted", Toast.LENGTH_SHORT).show();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                if(!binding.etQ1.getEditableText().toString().equals("") && !binding.etQ2.getEditableText().toString().equals("") && !binding.etQ3.getEditableText().toString().equals("")
+                        && !binding.etQ4.getEditableText().toString().equals("") && !binding.etQ5.getEditableText().toString().equals("") && !binding.etQ6.getEditableText().toString().equals("")
+                        && !binding.etQ7.getEditableText().toString().equals("") && !binding.etQ8.getEditableText().toString().equals("")) {
+
+                    Map<String, String> data = new HashMap<>();
+                    data.put("q1", binding.etQ1.getText().toString());
+                    data.put("q2", binding.etQ2.getText().toString());
+                    data.put("q3", binding.etQ3.getText().toString());
+                    data.put("q4", binding.etQ4.getText().toString());
+                    data.put("q5", binding.etQ5.getText().toString());
+                    data.put("q6", binding.etQ6.getText().toString());
+                    data.put("q7", binding.etQ7.getText().toString());
+                    data.put("q8", binding.etQ8.getText().toString());
+
+                    firebaseFirestore
+                            .collection("Feedback")
+                            .document(firebaseAuth.getCurrentUser().getEmail())
+                            .set(data)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    binding.etQ1.setText("");
+                                    binding.etQ2.setText("");
+                                    binding.etQ3.setText("");
+                                    binding.etQ4.setText("");
+                                    binding.etQ5.setText("");
+                                    binding.etQ6.setText("");
+                                    binding.etQ7.setText("");
+                                    binding.etQ8.setText("");
+                                    Toast.makeText(getActivity(), "Form Submitted", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                } else {
+                    Toast.makeText(getActivity(), "Fill the details", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

@@ -56,10 +56,10 @@ public class ProfileFragment extends Fragment {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         User user = documentSnapshot.toObject(User.class);
 
-                        binding.tvName.setText("Name : \n" + user.getName());
-                        binding.tvEmail.setText("Email : \n" + user.getEmail());
-                        binding.tvBloodGroup.setText("Blood Group : \n" + user.getBloodGroup());
-                        binding.tvMobileNumber.setText("Mobile Number : \n" + user.getMobileNumber());
+                        binding.tvName.setText(user.getName());
+                        binding.tvEmail.setText(user.getEmail());
+                        binding.tvBloodGroup.setText(user.getBloodGroup());
+                        binding.tvMobileNumber.setText(user.getMobileNumber());
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {
